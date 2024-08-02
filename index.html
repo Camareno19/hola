@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor Decimal - Binario</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Conversor Decimal - Binario</h1>
+    <div>
+        <label for="option">Seleccione una opción</label>
+        <select id="option">
+            <option value="1">Decimal a Binario</option>
+            <option value="2">Binario a Decimal</option>
+        </select>
+    </div>
+    <div>
+        <label for="number">Ingrese el número a convertir:</label>
+        <input type="text" id="number">
+    </div>
+    <button onclick="convert()">Convertir</button>
+    <p id="resultado"></p>
+
+    <script>
+        function convert() {
+            const option = document.getElementById("option").value;
+            const number = document.getElementById("number").value;
+            let resultado = "";
+
+            if (option === "1") {
+                // Convertir decimal a binario
+                const decimalNumber = parseInt(number, 10);
+                if (isNaN(decimalNumber)) {
+                    resultado = "Por favor, ingrese un número decimal válido.";
+                } else {
+                    resultado = decimalNumber.toString(2).padStart(8, "0");
+                }
+            } else if (option === "2") {
+                // Convertir binario a decimal
+                const binaryNumber = number;
+                if (!/^[01]+$/.test(binaryNumber)) {
+                    resultado = "Por favor, ingrese un número binario válido.";
+                } else {
+                    resultado = parseInt(binaryNumber, 2).toString(10);
+                }
+            } else {
+                resultado = "Opción no válida.";
+            }
+
+            document.getElementById("resultado").innerText = "El resultado es: " + resultado;
+        }
+    </script>
+</body>
+</html>
+   
